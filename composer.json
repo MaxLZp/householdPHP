@@ -1,0 +1,25 @@
+{
+    "name": "maxlzp/household",
+    "description": "household accounting library",
+    "authors": [
+        {
+            "name": "Maxim Linenko",
+            "email": "lmax_job@mail.ru"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "maxlzp\\household\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    },
+
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.3"
+    }
+}

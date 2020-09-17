@@ -1,7 +1,6 @@
 <?php
 
-
-namespace maxlzp\household\entities;
+namespace maxlzp\household;
 
 use Ramsey\Uuid\Uuid;
 

@@ -2,13 +2,13 @@
 
 namespace tests;
 
-use maxlzp\household\entities\Id;
+use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class IdTest
  *
- * Tests for entites/Id
+ * Tests for entities/Id
  *
  * @package tests
  */

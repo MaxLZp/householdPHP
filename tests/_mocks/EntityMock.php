@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\mocks;
+namespace tests\_mocks;
 
 use maxlzp\household\Entity;
 

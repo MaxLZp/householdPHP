@@ -34,15 +34,4 @@ abstract class Entity
         return $this->id;
     }
 
-    /**
-     * Checks if two entities are equal
-     *
-     * @param Entity $other
-     *
-     * @return bool
-     */
-    public function equals(Entity $other): bool
-    {
-        return $this->getId()->equals($other->getId());
-    }
 }

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class IdTest
  *
- * Tests for entities/Id
+ * Tests for Id
  *
  * @package tests
  */

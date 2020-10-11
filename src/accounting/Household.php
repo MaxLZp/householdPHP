@@ -57,11 +57,18 @@ class Household extends Entity
     /**
      * Register new Meter for household
      *
+     * @param string             $title
+     * @param \DateTimeImmutable $registrationDate
+     * @param MeterParameters    $parameters
+     *
      * @return Meter
      */
-    public function registerMeter(): Meter
-    {
-        return $this->createMeter();
+    public function registerMeter(
+        string $title,
+        \DateTimeImmutable $registrationDate,
+        MeterParameters $parameters
+    ): Meter {
+        return $this->createMeter($title, $registrationDate, $parameters);
     }
 
     /**
@@ -77,23 +84,43 @@ class Household extends Entity
     /**
      * Replace meter with new one
      *
-     * @param Meter $oldMeter
+     * @param Meter              $oldMeter
+     * @param string             $title
+     * @param \DateTimeImmutable $registrationDate
+     * @param MeterParameters    $parameters
      *
      * @return Meter
      */
-    public function replaceMeter(Meter $oldMeter): Meter
-    {
-        $oldMeter->replace();
+    public function replaceMeter(
+        Meter $oldMeter,
+        string $title,
+        \DateTimeImmutable $registrationDate,
+        MeterParameters $parameters
+    ): Meter {
+        $oldMeter->replace($registrationDate);
+        return $this->registerMeter($title, $registrationDate, $parameters);
     }
 
     /**
      * Create new Meter for household
      *
+     * @param string             $title
+     * @param \DateTimeImmutable $registrationDate
+     * @param MeterParameters    $parameters
+     *
      * @return Meter
      */
-    private function createMeter(): Meter
-    {
-        return new Meter($this->getId());
+    private function createMeter(
+        string $title,
+        \DateTimeImmutable $registrationDate,
+        MeterParameters $parameters
+    ): Meter {
+        return new Meter(
+            $this->getId(),
+            $title,
+            $registrationDate,
+            $parameters
+        );
     }
 
     /**

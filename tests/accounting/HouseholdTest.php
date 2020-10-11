@@ -3,6 +3,8 @@
 namespace tests\accounting;
 
 use maxlzp\household\accounting\Household;
+use maxlzp\household\accounting\Meter;
+use maxlzp\household\accounting\MeterParameters;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,10 +44,7 @@ class HouseholdTest extends TestCase
     public function shouldBeEqualToSame()
     {
         $household = new Household('Home');
-        $other = new Household(
-            $household->getTitle()->getTitle(),
-            $household->getId()->getId()
-        );
+        $other = new Household($household->getTitle()->getTitle(), $household->getId()->getId());
 
         $this->assertTrue($household->equals($other));
         $this->assertTrue($other->equals($household));
@@ -57,9 +56,7 @@ class HouseholdTest extends TestCase
     public function shouldNotBeEqualWithDifferentId()
     {
         $household = new Household('Home');
-        $other = new Household(
-            $household->getTitle()->getTitle()
-        );
+        $other = new Household($household->getTitle()->getTitle());
 
         $this->assertFalse($household->equals($other));
         $this->assertFalse($other->equals($household));
@@ -72,10 +69,7 @@ class HouseholdTest extends TestCase
     public function shouldNotBeEqualWithDifferentTitle()
     {
         $household = new Household('Home');
-        $other = new Household(
-            'Home2',
-            $household->getId()->getId()
-        );
+        $other = new Household('Home2', $household->getId()->getId());
 
         $this->assertFalse($household->equals($other));
         $this->assertFalse($other->equals($household));
@@ -102,10 +96,13 @@ class HouseholdTest extends TestCase
     public function shouldRegisterNewMeter()
     {
         $household = new Household('Home');
-        $meter = $household->registerMeter();
+        $meter = $household->registerMeter(
+            'Electric',
+            new \DateTimeImmutable('now'),
+            new MeterParameters()
+        );
 
         $this->assertTrue($household->getId()->equals($meter->getHouseholdId()));
-        $this->assertTrue($meter->isActive());
     }
 
     /**
@@ -113,13 +110,18 @@ class HouseholdTest extends TestCase
      */
     public function shouldReplaceMeter()
     {
-       $household = new Household('Home');
-       $oldMeter = $household->registerMeter();
-       $newMeter = $household->replaceMeter($oldMeter);
+        $household = new Household('Home');
+        $oldMeter = $household->registerMeter(
+            'Electric',
+            new \DateTimeImmutable('now'),
+            new MeterParameters()
+        );
+        $newMeter = $household->replaceMeter($oldMeter,
+            'Electric',
+            new \DateTimeImmutable('now'),
+            new MeterParameters()
+        );
 
         $this->assertTrue($household->getId()->equals($newMeter->getHouseholdId()));
-        $this->assertTrue($newMeter->isActive());
-        $this->assertFalse($oldMeter->isActive());
-
     }
 }

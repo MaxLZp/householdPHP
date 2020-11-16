@@ -3,6 +3,7 @@
 namespace maxlzp\household\accounting;
 
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
+use maxlzp\household\Range;
 
 /**
  * Class Usage
@@ -93,30 +94,14 @@ class Usage
     }
 
     /**
-     * Calculate Usage value
+     * Checks if reading are overflown over meter's maximum value
      *
-     * @return float
-     *
-     * @throws InvalidMeterReadingsOrderException
+     * @return bool
      */
-    public function getValue(): float
+    public function hasReadingsOverflow(): bool
     {
-        return $this->getValueCalculator()->calculate();
-    }
-
-    /**
-     * Get valid UsageValueCalculator
-     *
-     * @return UsageValueCalculatorInterface
-     *
-     * @throws InvalidMeterReadingsOrderException
-     */
-    private function getValueCalculator(): UsageValueCalculatorInterface
-    {
-        if ($this->isReadingsOverflow()) {
-            return new UsageValueOverflowCalculator($this);
-        };
-        return new UsageValueCalculator($this);
+        return $this->getPrevious()->getTakenAt() < $this->getCurrent()->getTakenAt()
+             && $this->previous->getValue() > $this->current->getValue();
     }
 
     /**
@@ -136,13 +121,4 @@ class Usage
         }
     }
 
-    /**
-     * Checks if reading are overflown over meter's maximum value
-     *
-     * @return bool
-     */
-    private function isReadingsOverflow(): bool
-    {
-        return $this->previous->getValue() > $this->current->getValue();
-    }
 }

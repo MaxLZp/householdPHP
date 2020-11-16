@@ -33,14 +33,8 @@ class MeterReadingTest extends TestCase
             new \DateTimeImmutable('now'),
             12.354
         );
-        $reading2 = new MeterReading(
-            new Id('MeterId'),
-            new \DateTimeImmutable('now'),
-            12.354,
-            $reading->getId()
-        );
 
-        $this->assertTrue($reading->equals($reading2));
+        $this->assertTrue($reading->equals($reading));
     }
 
     /**

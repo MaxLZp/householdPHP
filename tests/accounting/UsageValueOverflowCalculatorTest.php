@@ -37,9 +37,9 @@ class UsageValueOverflowCalculatorTest extends TestCase
             $this->createReading($previous, new \DateTimeImmutable('yesterday')),
             $this->createMeterParameters($digits)
         );
-        $calculator = new UsageValueOverflowCalculator($usage);
+        $calculator = new UsageValueOverflowCalculator();
 
-        $this->assertEquals($expected, $calculator->calculate());
+        $this->assertEquals($expected, $calculator->calculate($usage)->getValue());
     }
 
     /**
@@ -55,24 +55,6 @@ class UsageValueOverflowCalculatorTest extends TestCase
             [5, 95.5, 2, 9.5],
             [5.5, 95, 2, 10.5],
         ];
-    }
-
-    /**
-     * @test
-     *
-     * @throws \maxlzp\household\exceptions\InvalidMeterReadingsOrderException
-     * @throws \Exception
-     */
-    public function shouldThrowInvalidReadingsOrderException()
-    {
-        $this->expectException(InvalidMeterReadingsOrderException::class);
-
-        $usage = Usage::createFor(
-            $this->createReading(20),
-            $this->createReading(10, new \DateTimeImmutable('yesterday')),
-            $this->createMeterParameters(2)
-        );
-        $calculator = new UsageValueOverflowCalculator($usage);
     }
 
     /**

@@ -9,31 +9,22 @@ use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
  *
  * @package maxlzp\household\accounting
  */
-class UsageValueOverflowCalculator extends UsageValueCalculator
-    implements UsageValueCalculatorInterface
+class UsageValueOverflowCalculator implements UsageValueCalculatorInterface
 {
-
-    /**
-     * UsageValueOverflowCalculator constructor.
-     *
-     * @param Usage $usage
-     *
-     * @throws \maxlzp\household\exceptions\InvalidMeterReadingsOrderException
-     */
-    public function __construct(Usage $usage)
-    {
-        parent::__construct($usage);
-    }
 
     /**
      * Calculate usage value
      *
-     * @return float
+     * @param Usage $usage
+     *
+     * @return UsageValue
      */
-    public function calculate(): float
+    public function calculate(Usage $usage): UsageValue
     {
-        return $this->usage->getCurrent()->getValue()
-            + ($this->usage->getMeterParameters()->getMaximumValue() - $this->usage->getPrevious()->getValue());
+        return new UsageValue(
+            $usage->getCurrent()->getValue()
+            + ($usage->getMeterParameters()->getMaximumValue() - $usage->getPrevious()->getValue())
+        );
     }
 
     /**

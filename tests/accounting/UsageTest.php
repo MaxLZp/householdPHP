@@ -7,6 +7,7 @@ use maxlzp\household\accounting\MeterReading;
 use maxlzp\household\accounting\Usage;
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
 use maxlzp\household\Id;
+use maxlzp\household\Range;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -49,53 +50,55 @@ class UsageTest extends TestCase
         $this->assertNotNull($usage);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider getValueProperlyProvider
-     *
-     * @param float $current
-     * @param float $previous
-     * @param int   $digits
-     * @param float $expected
-     *
-     * @throws \Exception
-     */
-    public function shouldGetValueProperly(
-        float $current,
-        float $previous,
-        int $digits,
-        float $expected
-    ) {
-        $usage = Usage::createFor(
-            $this->createReading($current),
-            $this->createReading($previous, new \DateTimeImmutable('yesterday')),
-            $this->createMeterParameters($digits)
-        );
 
-        $this->assertEquals($expected, $usage->getValue());
-
-    }
-
-    /**
-     * @return array
-     */
-    public function getValueProperlyProvider(): array
-    {
-        //current, previous, meter digits, expected value
-        return [
-            [20, 10, 5, 10],
-            [20.5, 10, 5, 10.5],
-            [5, 95, 2, 10],
-            [5, 95.5, 2, 9.5],
-            [5.5, 95, 2, 10.5],
-        ];
-    }
+//
+//    /**
+//     * @test
+//     *
+//     * @dataProvider getValueProperlyProvider
+//     *
+//     * @param float $current
+//     * @param float $previous
+//     * @param int   $digits
+//     * @param float $expected
+//     *
+//     * @throws \Exception
+//     */
+//    public function shouldGetValueProperly(
+//        float $current,
+//        float $previous,
+//        int $digits,
+//        float $expected
+//    ) {
+//        $usage = Usage::createFor(
+//            $this->createReading($current),
+//            $this->createReading($previous, new \DateTimeImmutable('yesterday')),
+//            $this->createMeterParameters($digits)
+//        );
+//
+//        $this->assertEquals($expected, $usage->getValue());
+//
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function getValueProperlyProvider(): array
+//    {
+//        //current, previous, meter digits, expected value
+//        return [
+//            [20, 10, 5, 10],
+//            [20.5, 10, 5, 10.5],
+//            [5, 95, 2, 10],
+//            [5, 95.5, 2, 9.5],
+//            [5.5, 95, 2, 10.5],
+//        ];
+//    }
 
     /**
      * Create MeterReading instance
      *
-     * @param float                   $value
+     * @param float $value
      * @param \DateTimeImmutable|null $takenAt
      *
      * @return MeterReading

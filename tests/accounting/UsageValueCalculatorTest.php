@@ -36,9 +36,9 @@ class UsageValueCalculatorTest extends TestCase
             $this->createReading($previous, new \DateTimeImmutable('yesterday')),
             $this->createMeterParameters($digits)
         );
-        $calculator = new UsageValueCalculator($usage);
+        $calculator = new UsageValueCalculator();
 
-        $this->assertEquals($expected, $calculator->calculate());
+        $this->assertEquals($expected, $calculator->calculate($usage)->getValue());
     }
 
     /**
@@ -70,7 +70,8 @@ class UsageValueCalculatorTest extends TestCase
             $this->createReading(20, new \DateTimeImmutable('yesterday')),
             $this->createMeterParameters(2)
         );
-        $calculator = new UsageValueCalculator($usage);
+        $calculator = new UsageValueCalculator();
+        $calculator->calculate($usage);
     }
 
     /**

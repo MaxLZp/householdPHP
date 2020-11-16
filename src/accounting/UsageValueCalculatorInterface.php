@@ -12,7 +12,9 @@ interface UsageValueCalculatorInterface
     /**
      * Calculate usage value
      *
-     * @return float
+     * @param Usage $usage
+     *
+     * @return UsageValue
      */
-    public function calculate(): float;
+    public function calculate(Usage $usage): UsageValue;
 }

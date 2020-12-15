@@ -2,7 +2,7 @@
 
 namespace maxlzp\household\billing;
 
-use maxlzp\household\accounting\UsageValue;
+use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Money;
 
 /**

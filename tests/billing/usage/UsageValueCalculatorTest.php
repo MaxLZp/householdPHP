@@ -1,17 +1,16 @@
 <?php
 
-namespace tests\accounting;
+namespace tests\accounting\billing\usage;
 
-use maxlzp\household\accounting\MeterParameters;
-use maxlzp\household\accounting\MeterReading;
-use maxlzp\household\accounting\Usage;
-use maxlzp\household\accounting\UsageValueCalculator;
-use maxlzp\household\accounting\UsageValueOverflowCalculator;
+use maxlzp\household\accounting\meter\MeterParameters;
+use maxlzp\household\accounting\reading\MeterReading;
+use maxlzp\household\billing\usage\Usage;
+use maxlzp\household\billing\usage\UsageValueCalculator;
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
 use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;
 
-class UsageValueOverflowCalculatorTest extends TestCase
+class UsageValueCalculatorTest extends TestCase
 {
     /**
      * @test
@@ -37,7 +36,7 @@ class UsageValueOverflowCalculatorTest extends TestCase
             $this->createReading($previous, new \DateTimeImmutable('yesterday')),
             $this->createMeterParameters($digits)
         );
-        $calculator = new UsageValueOverflowCalculator();
+        $calculator = new UsageValueCalculator();
 
         $this->assertEquals($expected, $calculator->calculate($usage)->getValue());
     }
@@ -51,10 +50,28 @@ class UsageValueOverflowCalculatorTest extends TestCase
     {
         //current, previous, meter digits, expected value
         return [
-            [5, 95, 2, 10],
-            [5, 95.5, 2, 9.5],
-            [5.5, 95, 2, 10.5],
+            [20, 10, 5, 10],
+            [20.5, 10, 5, 10.5],
         ];
+    }
+
+    /**
+     * @test
+     *
+     * @throws \maxlzp\household\exceptions\InvalidMeterReadingsOrderException
+     * @throws \Exception
+     */
+    public function shouldThrowInvalidReadingsOrderException()
+    {
+        $this->expectException(InvalidMeterReadingsOrderException::class);
+
+        $usage = Usage::createFor(
+            $this->createReading(10),
+            $this->createReading(20, new \DateTimeImmutable('yesterday')),
+            $this->createMeterParameters(2)
+        );
+        $calculator = new UsageValueCalculator();
+        $calculator->calculate($usage);
     }
 
     /**

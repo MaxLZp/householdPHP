@@ -2,9 +2,9 @@
 
 namespace maxlzp\household\billing\tariff;
 
-use maxlzp\household\accounting\UsageValue;
 use maxlzp\household\billing\PriceableCollection;
 use maxlzp\household\billing\PriceableInterface;
+use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Entity;
 use maxlzp\household\Id;
 use maxlzp\household\Money;

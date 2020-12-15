@@ -1,6 +1,6 @@
 <?php
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\billing\usage;
 
 /**
  * Interface UsageValueCalculatorInterface

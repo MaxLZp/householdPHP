@@ -1,13 +1,12 @@
 <?php
 
-namespace tests\accounting;
+namespace tests\accounting\billing\usage;
 
-use maxlzp\household\accounting\MeterParameters;
-use maxlzp\household\accounting\MeterReading;
-use maxlzp\household\accounting\Usage;
+use maxlzp\household\accounting\meter\MeterParameters;
+use maxlzp\household\accounting\reading\MeterReading;
+use maxlzp\household\billing\usage\Usage;
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
 use maxlzp\household\Id;
-use maxlzp\household\Range;
 use PHPUnit\Framework\TestCase;
 
 /**

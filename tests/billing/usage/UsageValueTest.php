@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\accounting;
+namespace tests\accounting\billing\usage;
 
-use maxlzp\household\accounting\UsageValue;
+use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Range;
 use PHPUnit\Framework\TestCase;
 

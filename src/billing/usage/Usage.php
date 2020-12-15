@@ -1,9 +1,10 @@
 <?php
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\billing\usage;
 
+use maxlzp\household\accounting\meter\MeterParameters;
+use maxlzp\household\accounting\reading\MeterReading;
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
-use maxlzp\household\Range;
 
 /**
  * Class Usage

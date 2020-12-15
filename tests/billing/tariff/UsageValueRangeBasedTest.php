@@ -2,8 +2,8 @@
 
 namespace tests\billing\tariff;
 
-use maxlzp\household\accounting\UsageValue;
 use maxlzp\household\billing\tariff\UsageValueRangeBased;
+use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Money;
 use maxlzp\household\Range;
 use PHPUnit\Framework\TestCase;

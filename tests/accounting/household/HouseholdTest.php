@@ -1,10 +1,9 @@
 <?php
 
-namespace tests\accounting;
+namespace tests\accounting\household;
 
-use maxlzp\household\accounting\Household;
-use maxlzp\household\accounting\Meter;
-use maxlzp\household\accounting\MeterParameters;
+use maxlzp\household\accounting\household\Household;
+use maxlzp\household\accounting\meter\MeterParameters;
 use PHPUnit\Framework\TestCase;
 
 /**

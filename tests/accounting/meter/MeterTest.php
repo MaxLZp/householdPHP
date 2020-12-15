@@ -2,8 +2,8 @@
 
 namespace tests\accounting;
 
-use maxlzp\household\accounting\Meter;
-use maxlzp\household\accounting\MeterParameters;
+use maxlzp\household\accounting\meter\Meter;
+use maxlzp\household\accounting\meter\MeterParameters;
 use maxlzp\household\exceptions\MeterReadingValueExceedsMaxMtereValueException;
 use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;

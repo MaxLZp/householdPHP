@@ -1,6 +1,6 @@
 <?php
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\accounting\reading;
 
 use maxlzp\household\Entity;
 use maxlzp\household\Id;

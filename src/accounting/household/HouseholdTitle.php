@@ -1,7 +1,7 @@
 <?php
 
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\accounting\household;
 
 use maxlzp\household\Title;
 

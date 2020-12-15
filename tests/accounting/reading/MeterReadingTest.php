@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\accounting;
+namespace tests\accounting\reading;
 
-use maxlzp\household\accounting\MeterReading;
+use maxlzp\household\accounting\reading\MeterReading;
 use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;
 

@@ -1,7 +1,9 @@
 <?php
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\accounting\household;
 
+use maxlzp\household\accounting\meter\Meter;
+use maxlzp\household\accounting\meter\MeterParameters;
 use maxlzp\household\Entity;
 use maxlzp\household\Id;
 

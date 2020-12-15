@@ -2,7 +2,7 @@
 
 namespace tests\accounting;
 
-use maxlzp\household\accounting\MeterParameters;
+use maxlzp\household\accounting\meter\MeterParameters;
 use PHPUnit\Framework\TestCase;
 
 class MeterParametersTest extends TestCase

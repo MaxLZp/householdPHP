@@ -1,7 +1,8 @@
 <?php
 
-namespace maxlzp\household\accounting;
+namespace maxlzp\household\accounting\meter;
 
+use maxlzp\household\accounting\reading\MeterReading;
 use maxlzp\household\Entity;
 use maxlzp\household\exceptions\MeterReadingValueExceedsMaxMtereValueException;
 use maxlzp\household\Id;

@@ -43,7 +43,7 @@ interface MeterRepositoryInterface
      *
      * @throws MeterNotFoundException
      */
-    function householdOfId(MeterId $id): Meter;
+    function meterOfId(MeterId $id): Meter;
 
     /**
      * Generate MeterId

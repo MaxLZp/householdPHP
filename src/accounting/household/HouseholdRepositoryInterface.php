@@ -14,9 +14,8 @@ interface HouseholdRepositoryInterface
      * Add the household to repository
      *
      * @param Household $household
-     * @return mixed
      */
-    function add(Household $household);
+    function add(Household $household): void;
 
     /**
      * Get all households
@@ -29,7 +28,9 @@ interface HouseholdRepositoryInterface
      * Returns Household with $id specified
      *
      * @param HouseholdId $id
+     *
      * @return Household
+     *
      * @throws HouseholdNotFoundException
      */
     function householdOfId(HouseholdId $id): Household;
@@ -45,16 +46,16 @@ interface HouseholdRepositoryInterface
      * Remove the household from repository
      *
      * @param Household $household
-     * @return mixed
      */
-    function remove(Household $household);
+    function remove(Household $household): void;
 
     /**
      * Update the household specified
      *
      * @param Household $household
+     *
      * @return mixed
      */
-    function update(Household $household);
+    function update(Household $household): void;
 
 }

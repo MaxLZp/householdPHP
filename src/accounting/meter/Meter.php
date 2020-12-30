@@ -2,10 +2,10 @@
 
 namespace maxlzp\household\accounting\meter;
 
+use maxlzp\household\accounting\household\HouseholdId;
 use maxlzp\household\accounting\reading\MeterReading;
-use maxlzp\household\Entity;
+use maxlzp\household\entity\Entity;
 use maxlzp\household\exceptions\MeterReadingValueExceedsMaxMtereValueException;
-use maxlzp\household\Id;
 
 /**
  * Class Meter
@@ -15,7 +15,7 @@ use maxlzp\household\Id;
 class Meter extends Entity
 {
     /**
-     * @var Id
+     * @var HouseholdId
      */
     private $householdId;
 
@@ -42,24 +42,24 @@ class Meter extends Entity
     /**
      * Meter constructor.
      *
-     * @param Id             $householdId
+     * @param MeterId            $id
+     * @param HouseholdId        $householdId
      * @param string             $title
      * @param \DateTimeImmutable $registrationDate
      * @param MeterParameters    $parameters
      * @param \DateTimeImmutable $replacementDate
-     * @param string|null        $id
      *
      */
     public function __construct(
-        Id $householdId,
+        MeterId $id,
+        HouseholdId $householdId,
         string $title,
         \DateTimeImmutable $registrationDate,
         MeterParameters $parameters,
-        \DateTimeImmutable $replacementDate = null,
-        string $id = null
-    ) {
-        parent::__construct(new Id($id));
+        \DateTimeImmutable $replacementDate = null
 
+    ) {
+        parent::__construct($id);
         $this->householdId = $householdId;
         $this->parameters = $parameters;
         $this->registrationDate = $registrationDate;
@@ -84,9 +84,9 @@ class Meter extends Entity
     /**
      * Returns Id of household meter is bound to
      *
-     * @return Id
+     * @return HouseholdId
      */
-    public function getHouseholdId(): Id
+    public function getHouseholdId(): HouseholdId
     {
         return $this->householdId;
     }

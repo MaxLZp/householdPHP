@@ -1,18 +1,15 @@
 <?php
 
-namespace tests;
+namespace tests\accounting\household;
 
-use maxlzp\household\Id;
+use maxlzp\household\accounting\household\HouseholdId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class IdTest
- *
- * Tests for Id
- *
- * @package tests
+ * Class HouseholdIdTest
+ * @package tests\accounting\household
  */
-class IdTest extends TestCase
+class HouseholdIdTest extends TestCase
 {
 
     /**
@@ -21,7 +18,7 @@ class IdTest extends TestCase
     public function shouldConstructWithGivenValue()
     {
         $expectedId = '1234567890';
-        $actualId = new Id($expectedId);
+        $actualId = new HouseholdId($expectedId);
         $this->assertEquals($expectedId, $actualId->getId());
     }
 
@@ -30,7 +27,7 @@ class IdTest extends TestCase
      */
     public function shouldConstructWithGeneratedValue()
     {
-        $id = new Id();
+        $id = new HouseholdId();
         $this->assertNotEmpty($id->getId());
     }
 
@@ -39,8 +36,8 @@ class IdTest extends TestCase
      */
     public function constructorMustGenerateUniqueValue()
     {
-        $id1 = new Id();
-        $id2 = new Id();
+        $id1 = new HouseholdId();
+        $id2 = new HouseholdId();
         $this->assertNotEquals($id1->getId(), $id2->getId());
     }
 
@@ -49,7 +46,7 @@ class IdTest extends TestCase
      */
     public function shouldBeEqualToItself()
     {
-        $id = new Id();
+        $id = new HouseholdId();
         $this->assertTrue($id->equals($id));
     }
 
@@ -58,8 +55,8 @@ class IdTest extends TestCase
      */
     public function shouldBeEqualToSameValue()
     {
-        $id = new Id();
-        $id2 = new Id($id->getId());
+        $id = new HouseholdId();
+        $id2 = new HouseholdId($id->getId());
         $this->assertTrue($id->equals($id2));
         $this->assertTrue($id2->equals($id));
     }
@@ -69,8 +66,8 @@ class IdTest extends TestCase
      */
     public function shouldNotBeEqualToDifferentId()
     {
-        $id = new Id();
-        $id2 = new Id();
+        $id = new HouseholdId();
+        $id2 = new HouseholdId();
         $this->assertFalse($id->equals($id2));
         $this->assertFalse($id2->equals($id));
     }

@@ -2,6 +2,7 @@
 
 namespace tests\billing\tariff;
 
+use maxlzp\household\billing\tariff\TariffId;
 use maxlzp\household\billing\tariff\UsageValueBased;
 use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Money;
@@ -22,7 +23,7 @@ class UsageValueBasedTest extends TestCase
         $expectedPrice
     ) {
         $usage = new UsageValue($usageValue);
-        $tariff = new UsageValueBased('Test', new Money($cost, 'usd'));
+        $tariff = new UsageValueBased(new TariffId(), 'Test', new Money($cost, 'usd'));
 
         $this->assertEquals($expectedPrice, $tariff->getPriceFor($usage)->getValue());
     }

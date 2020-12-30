@@ -1,25 +1,16 @@
 <?php
 
-namespace maxlzp\household;
+namespace maxlzp\household\billing\tariff;
 
+use maxlzp\household\entity\Id;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class Id
- * Entity identity
- *
- * @package maxlzp\household\entities
+ * Class TariffId
+ * @package maxlzp\household\accounting\reading
  */
-class Id
+class TariffId extends Id
 {
-
-    /**
-     * Id value
-     *
-     * @var string|null
-     */
-    private $id;
-
     /**
      * Id constructor.
      *
@@ -27,17 +18,7 @@ class Id
      */
     public function __construct(string $id = null)
     {
-        $this->id = $id === null ? Uuid::uuid4() : $id;
-    }
-
-    /**
-     * Id value
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
+        parent::__construct($id === null ? Uuid::uuid4() : $id);
     }
 
     /**

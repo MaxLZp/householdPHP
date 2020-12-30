@@ -3,9 +3,9 @@
 namespace maxlzp\household\accounting\household;
 
 use maxlzp\household\accounting\meter\Meter;
+use maxlzp\household\accounting\meter\MeterId;
 use maxlzp\household\accounting\meter\MeterParameters;
-use maxlzp\household\Entity;
-use maxlzp\household\Id;
+use maxlzp\household\entity\Entity;
 
 /**
  * Class Household
@@ -24,12 +24,12 @@ class Household extends Entity
     /**
      * Household constructor.
      *
+     * @param HouseholdId $id
      * @param string      $title
-     * @param string|null $id
      */
-    public function __construct(string $title, string $id = null)
+    public function __construct(HouseholdId $id, string $title)
     {
-        parent::__construct(new Id($id));
+        parent::__construct($id);
         $this->resetTitle($title);
     }
 
@@ -59,18 +59,20 @@ class Household extends Entity
     /**
      * Register new Meter for household
      *
-     * @param string             $title
+     * @param MeterId $meterId
+     * @param string $title
      * @param \DateTimeImmutable $registrationDate
-     * @param MeterParameters    $parameters
+     * @param MeterParameters $parameters
      *
      * @return Meter
      */
     public function registerMeter(
+        MeterId $meterId,
         string $title,
         \DateTimeImmutable $registrationDate,
         MeterParameters $parameters
     ): Meter {
-        return $this->createMeter($title, $registrationDate, $parameters);
+        return $this->createMeter($meterId, $title, $registrationDate, $parameters);
     }
 
     /**
@@ -86,38 +88,43 @@ class Household extends Entity
     /**
      * Replace meter with new one
      *
-     * @param Meter              $oldMeter
-     * @param string             $title
+     * @param Meter $oldMeter
+     * @param MeterId $newMeterId
+     * @param string $title
      * @param \DateTimeImmutable $registrationDate
-     * @param MeterParameters    $parameters
+     * @param MeterParameters $parameters
      *
      * @return Meter
      */
     public function replaceMeter(
         Meter $oldMeter,
+        MeterId $newMeterId,
         string $title,
         \DateTimeImmutable $registrationDate,
         MeterParameters $parameters
     ): Meter {
         $oldMeter->replace($registrationDate);
-        return $this->registerMeter($title, $registrationDate, $parameters);
+        return $this->registerMeter($newMeterId, $title, $registrationDate, $parameters);
     }
 
     /**
      * Create new Meter for household
      *
-     * @param string             $title
+     * @param MeterId $meterId
+     * @param string $title
      * @param \DateTimeImmutable $registrationDate
-     * @param MeterParameters    $parameters
+     * @param MeterParameters $parameters
      *
      * @return Meter
      */
     private function createMeter(
+        MeterId $meterId,
         string $title,
         \DateTimeImmutable $registrationDate,
         MeterParameters $parameters
     ): Meter {
         return new Meter(
+            $meterId,
             $this->getId(),
             $title,
             $registrationDate,

@@ -2,8 +2,8 @@
 
 namespace maxlzp\household\accounting\reading;
 
-use maxlzp\household\Entity;
-use maxlzp\household\Id;
+use maxlzp\household\accounting\meter\MeterId;
+use maxlzp\household\entity\Entity;
 
 /**
  * Class MeterReading
@@ -14,7 +14,7 @@ class MeterReading extends Entity
 {
 
     /**
-     * @var Id
+     * @var MeterId
      */
     private $meterId;
 
@@ -31,18 +31,18 @@ class MeterReading extends Entity
     /**
      * MeterReading constructor.
      *
-     * @param Id                 $meterId
+     * @param MeterId            $meterId
      * @param \DateTimeImmutable $takenAt
      * @param float              $value
-     * @param Id                 $id
+     * @param MeterReadingId     $id
      */
     public function __construct(
-        Id $meterId,
+        MeterId $meterId,
         \DateTimeImmutable $takenAt,
         float $value,
-        Id $id = null)
+        MeterReadingId $id = null)
     {
-        parent::__construct($id);
+        parent::__construct(new MeterReadingId($id));
         $this->meterId = $meterId;
         $this->takenAt = $takenAt;
         $this->value = $value;
@@ -65,9 +65,9 @@ class MeterReading extends Entity
     }
 
     /**
-     * @return Id
+     * @return MeterId
      */
-    public function getMeterId(): Id
+    public function getMeterId(): MeterId
     {
         return $this->meterId;
     }

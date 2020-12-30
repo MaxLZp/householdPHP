@@ -24,9 +24,9 @@ trait TariffTitleTrait
     /**
      * Change tariff's title
      *
-     * @param string $newTitle
+     * @param TariffTitle $newTitle
      */
-    public function rename(string $newTitle): void
+    public function rename(string $newTitle): TariffTitle
     {
         $this->title = new TariffTitle($newTitle);
     }

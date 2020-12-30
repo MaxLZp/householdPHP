@@ -2,7 +2,8 @@
 
 namespace maxlzp\household\billing\tariff;
 
-use maxlzp\household\Id;
+
+use maxlzp\household\entity\Id;
 
 /**
  * Class ParentTrait

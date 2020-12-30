@@ -2,12 +2,12 @@
 
 namespace tests\accounting\billing\usage;
 
+use maxlzp\household\accounting\meter\MeterId;
 use maxlzp\household\accounting\meter\MeterParameters;
 use maxlzp\household\accounting\reading\MeterReading;
 use maxlzp\household\billing\usage\Usage;
 use maxlzp\household\billing\usage\UsageValueCalculator;
 use maxlzp\household\exceptions\InvalidMeterReadingsOrderException;
-use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;
 
 class UsageValueCalculatorTest extends TestCase
@@ -90,7 +90,7 @@ class UsageValueCalculatorTest extends TestCase
     ): MeterReading
     {
         return new MeterReading(
-            new Id('meterId'),
+            new MeterId('meterId'),
             $takenAt === null ? new \DateTimeImmutable('now') : $takenAt,
             $value
         );

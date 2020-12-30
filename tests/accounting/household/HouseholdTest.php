@@ -3,6 +3,8 @@
 namespace tests\accounting\household;
 
 use maxlzp\household\accounting\household\Household;
+use maxlzp\household\accounting\household\HouseholdId;
+use maxlzp\household\accounting\meter\MeterId;
 use maxlzp\household\accounting\meter\MeterParameters;
 use PHPUnit\Framework\TestCase;
 
@@ -15,24 +17,13 @@ use PHPUnit\Framework\TestCase;
  */
 class HouseholdTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function shouldGenerateId()
-    {
-        $expectedTitle = 'Home';
-        $household = new Household($expectedTitle);
-
-        $this->assertNotNull($household->getId());
-        $this->assertEquals($expectedTitle, $household->getTitle()->getTitle());
-    }
 
     /**
      * @test
      */
     public function shouldBeEqualToItself()
     {
-        $household = new Household('Home');
+        $household = new Household(new HouseholdId(), 'Home');
 
         $this->assertTrue($household->equals($household));
     }
@@ -42,8 +33,8 @@ class HouseholdTest extends TestCase
      */
     public function shouldBeEqualToSame()
     {
-        $household = new Household('Home');
-        $other = new Household($household->getTitle()->getTitle(), $household->getId()->getId());
+        $household = new Household(new HouseholdId(), 'Home');
+        $other = new Household($household->getId(), $household->getTitle()->getTitle());
 
         $this->assertTrue($household->equals($other));
         $this->assertTrue($other->equals($household));
@@ -54,8 +45,8 @@ class HouseholdTest extends TestCase
      */
     public function shouldNotBeEqualWithDifferentId()
     {
-        $household = new Household('Home');
-        $other = new Household($household->getTitle()->getTitle());
+        $household = new Household(new HouseholdId(), 'Home');
+        $other = new Household(new HouseholdId(), $household->getTitle()->getTitle());
 
         $this->assertFalse($household->equals($other));
         $this->assertFalse($other->equals($household));
@@ -67,8 +58,8 @@ class HouseholdTest extends TestCase
      */
     public function shouldNotBeEqualWithDifferentTitle()
     {
-        $household = new Household('Home');
-        $other = new Household('Home2', $household->getId()->getId());
+        $household = new Household(new HouseholdId(), 'Home');
+        $other = new Household($household->getId(), 'Home2');
 
         $this->assertFalse($household->equals($other));
         $this->assertFalse($other->equals($household));
@@ -82,7 +73,7 @@ class HouseholdTest extends TestCase
     {
         $oldTitle = 'Home';
         $newTitle = 'Home2';
-        $household = new Household($oldTitle);
+        $household = new Household(new HouseholdId(), $oldTitle);
         $household->rename($newTitle);
 
         $this->assertNotEquals($oldTitle, $household->getTitle()->getTitle());
@@ -94,8 +85,9 @@ class HouseholdTest extends TestCase
      */
     public function shouldRegisterNewMeter()
     {
-        $household = new Household('Home');
+        $household = new Household(new HouseholdId(), 'Home');
         $meter = $household->registerMeter(
+            new MeterId(),
             'Electric',
             new \DateTimeImmutable('now'),
             new MeterParameters()
@@ -109,13 +101,15 @@ class HouseholdTest extends TestCase
      */
     public function shouldReplaceMeter()
     {
-        $household = new Household('Home');
+        $household = new Household(new HouseholdId(), 'Home');
         $oldMeter = $household->registerMeter(
+            new MeterId(),
             'Electric',
             new \DateTimeImmutable('now'),
             new MeterParameters()
         );
         $newMeter = $household->replaceMeter($oldMeter,
+            new MeterId(),
             'Electric',
             new \DateTimeImmutable('now'),
             new MeterParameters()

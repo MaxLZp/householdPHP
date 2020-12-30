@@ -5,8 +5,7 @@ namespace maxlzp\household\billing\tariff;
 use maxlzp\household\billing\PriceableCollection;
 use maxlzp\household\billing\PriceableInterface;
 use maxlzp\household\billing\usage\UsageValue;
-use maxlzp\household\Entity;
-use maxlzp\household\Id;
+use maxlzp\household\entity\Entity;
 use maxlzp\household\Money;
 
 /**
@@ -25,12 +24,13 @@ class Composite extends Entity implements PriceableInterface
 
     /**
      * Composite constructor.
+     *
+     * @param TariffId $id
      * @param string $title
      * @param PriceableCollection|null $children
-     * @param Id|null $parentId
-     * @param Id|null $id
+     * @param TariffId|null $parentId
      */
-    public function __construct(string $title, PriceableCollection $children = null, Id $parentId = null, Id $id = null)
+    public function __construct(TariffId $id, string $title, PriceableCollection $children = null, TariffId $parentId = null)
     {
         parent::__construct($id);
         $this->title = $title;

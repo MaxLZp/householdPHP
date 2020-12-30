@@ -2,8 +2,8 @@
 
 namespace tests\accounting\reading;
 
+use maxlzp\household\accounting\meter\MeterId;
 use maxlzp\household\accounting\reading\MeterReading;
-use maxlzp\household\Id;
 use PHPUnit\Framework\TestCase;
 
 class MeterReadingTest extends TestCase
@@ -15,7 +15,7 @@ class MeterReadingTest extends TestCase
     public function shouldBeCreatedWithGeneratedId()
     {
         $reading = new MeterReading(
-            new Id('MeterId'),
+            new MeterId('MeterId'),
             new \DateTimeImmutable('now'),
             12.354
         );
@@ -29,7 +29,7 @@ class MeterReadingTest extends TestCase
     public function shouldBeEqualToItself()
     {
         $reading = new MeterReading(
-            new Id('MeterId'),
+            new MeterId('MeterId'),
             new \DateTimeImmutable('now'),
             12.354
         );
@@ -43,12 +43,12 @@ class MeterReadingTest extends TestCase
     public function shouldNoBeEqualToOther()
     {
         $reading = new MeterReading(
-            new Id('MeterId'),
+            new MeterId('MeterId'),
             new \DateTimeImmutable('now'),
             12.354
         );
         $reading2 = new MeterReading(
-            new Id('MeterId'),
+            new MeterId('MeterId'),
             new \DateTimeImmutable('now'),
             12.354
         );

@@ -3,6 +3,7 @@
 namespace tests\billing\tariff;
 
 use maxlzp\household\billing\tariff\Fixed;
+use maxlzp\household\billing\tariff\TariffId;
 use maxlzp\household\billing\usage\UsageValue;
 use maxlzp\household\Money;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +19,7 @@ class FixedTest extends TestCase
     {
         $cost = 100;
         $usage = new UsageValue($usageValue);
-        $tariff = new Fixed('Test', new Money($cost, 'usd'));
+        $tariff = new Fixed(new TariffId(), 'Test', new Money($cost, 'usd'));
 
         $this->assertEquals($cost, $tariff->getPriceFor($usage)->getValue());
     }

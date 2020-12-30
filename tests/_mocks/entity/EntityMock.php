@@ -1,8 +1,9 @@
 <?php
 
-namespace tests\_mocks;
+namespace tests\_mocks\entity;
 
-use maxlzp\household\Entity;
+
+use maxlzp\household\entity\Entity;
 
 /**
  * Class EntityMock

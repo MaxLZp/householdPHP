@@ -5,8 +5,7 @@ namespace maxlzp\household\billing\tariff;
 
 use maxlzp\household\billing\PriceableInterface;
 use maxlzp\household\billing\usage\UsageValue;
-use maxlzp\household\Entity;
-use maxlzp\household\Id;
+use maxlzp\household\entity\Entity;
 use maxlzp\household\Money;
 use maxlzp\household\Range;
 
@@ -27,13 +26,14 @@ class UsageValueRangeBased extends Entity implements PriceableInterface
 
     /**
      * UsageValueRangeBased constructor.
+     *
+     * @param TariffId $id
      * @param string $title
      * @param Money $cost
      * @param Range $range
-     * @param Id|null $parentId
-     * @param Id|null $id
+     * @param TariffId|null $parentId
      */
-    public function __construct(string $title, Money $cost, Range $range, Id $parentId = null, Id $id = null)
+    public function __construct(TariffId $id, string $title, Money $cost, Range $range, TariffId $parentId = null)
     {
         parent::__construct($id);
         $this->cost = $cost;

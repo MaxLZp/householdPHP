@@ -1,11 +1,11 @@
 <?php
 
-namespace maxlzp\household;
+namespace maxlzp\household\entity;
 
 /**
  * Class Entity
  *
- * @package maxlzp\household\entities
+ * @package maxlzp\household\entity
  */
 abstract class Entity
 {
@@ -17,17 +17,17 @@ abstract class Entity
     /**
      * Entity constructor.
      *
-     * @param Id $id
+     * @param mixed $id
      */
-    public function __construct(Id $id = null)
+    public function __construct(Id $id)
     {
-        $this->id = ($id === null) ? new Id : $id;
+        $this->id = $id;
     }
 
     /**
      * Returns Entity's Id
      *
-     * @return Id
+     * @return mixed
      */
     public function getId(): Id
     {

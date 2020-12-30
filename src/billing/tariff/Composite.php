@@ -3,20 +3,15 @@
 namespace maxlzp\household\billing\tariff;
 
 use maxlzp\household\billing\PriceableCollection;
-use maxlzp\household\billing\PriceableInterface;
 use maxlzp\household\billing\usage\UsageValue;
-use maxlzp\household\entity\Entity;
 use maxlzp\household\Money;
 
 /**
  * Class Composite
  * @package maxlzp\household\billing\tariff
  */
-class Composite extends Entity implements PriceableInterface
+class Composite extends Tariff
 {
-    use ParentTrait;
-    use TariffTitleTrait;
-
     /**
      * @var PriceableCollection
      */

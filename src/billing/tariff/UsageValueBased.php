@@ -2,19 +2,15 @@
 
 namespace maxlzp\household\billing\tariff;
 
-use maxlzp\household\billing\PriceableInterface;
 use maxlzp\household\billing\usage\UsageValue;
-use maxlzp\household\entity\Entity;
 use maxlzp\household\Money;
 
 /**
  * Class UsageValueBased
  * @package maxlzp\household\billing\tariff
  */
-class UsageValueBased extends Entity implements PriceableInterface
+class UsageValueBased extends Tariff
 {
-    use ParentTrait;
-    use TariffTitleTrait;
     use CostTrait;
 
     /**

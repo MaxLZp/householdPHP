@@ -1,11 +1,8 @@
 <?php
 
-
 namespace maxlzp\household\billing\tariff;
 
-use maxlzp\household\billing\PriceableInterface;
 use maxlzp\household\billing\usage\UsageValue;
-use maxlzp\household\entity\Entity;
 use maxlzp\household\Money;
 use maxlzp\household\Range;
 
@@ -13,10 +10,8 @@ use maxlzp\household\Range;
  * Class UsageValueRangeBased
  * @package maxlzp\household\billing\tariff
  */
-class UsageValueRangeBased extends Entity implements PriceableInterface
+class UsageValueRangeBased extends Tariff
 {
-    use ParentTrait;
-    use TariffTitleTrait;
     use CostTrait;
 
     /**

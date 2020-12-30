@@ -5,10 +5,10 @@ namespace maxlzp\household\accounting\household;
 use maxlzp\household\accounting\household\exceptions\HouseholdNotFoundException;
 
 /**
- * Interface HouseholdRepository
+ * Interface HouseholdRepositoryInterface
  * @package maxlzp\household\accounting\household
  */
-interface HouseholdRepository
+interface HouseholdRepositoryInterface
 {
     /**
      * Add the household to repository

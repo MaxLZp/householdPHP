@@ -2,7 +2,7 @@
 
 namespace maxlzp\household\billing\tariff;
 
-use maxlzp\household\billing\tariff\exceptions\TariffNorFoundException;
+use maxlzp\household\billing\tariff\exceptions\TariffNotFoundException;
 
 /**
  * Interface TariffRepositoryInterface
@@ -45,7 +45,7 @@ interface TariffRepositoryInterface
      *
      * @return Tariff
      *
-     * @throws TariffNorFoundException
+     * @throws TariffNotFoundException
      */
     public function tariffOfId(TariffId $id): Tariff;
 
